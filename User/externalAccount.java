@@ -1,5 +1,7 @@
 package User;
 
+import PaymentManagement.paymentAPI;
+
 public abstract class externalAccount {
 
 	private String accountNumber;
@@ -8,6 +10,10 @@ public abstract class externalAccount {
 	public double getBalance() {
 		// TODO - implement externalAccount.getBalance
 		throw new UnsupportedOperationException();
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 
 	public abstract void displayMenu();
