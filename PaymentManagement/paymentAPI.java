@@ -2,12 +2,7 @@ package PaymentManagement;
 
 public interface paymentAPI {
 
-	/**
-	 * 
-	 * @param scAccNumber
-	 * @param desAccNumber
-	 */
-	abstract void Transfer(String scAccNumber, String desAccNumber);
+
 
 	/**
 	 * 
@@ -19,6 +14,6 @@ public interface paymentAPI {
 	 * 
 	 * @param bill
 	 */
-	abstract void payBill(Bill bill);
+	abstract void payBill(Bill bill,String accountNumber);
 
 }
