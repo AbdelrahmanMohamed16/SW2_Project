@@ -1,19 +1,9 @@
 package PaymentManagement;
-
+import User.*;
 public interface paymentAPI {
+	abstract public double getBalance(externalAccount src);
 
-
-
-	/**
-	 * 
-	 * @param accountNumber
-	 */
-	abstract double getBalance(String accountNumber);
-
-	/**
-	 * 
-	 * @param bill
-	 */
-	abstract void payBill(Bill bill,String accountNumber);
+	public void payBill(externalAccount src , Bill bill);
+	abstract void Transfer(externalAccount src ,externalAccount dest ,double Amount);
 
 }
