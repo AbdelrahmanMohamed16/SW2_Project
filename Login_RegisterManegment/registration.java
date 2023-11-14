@@ -2,8 +2,26 @@ package Login_RegisterManegment;
 
 import User.*;
 
-public abstract class registration {
+import java.util.Scanner;
 
-	public abstract instaPayAccount register();
+public abstract class registration {
+	public DataBase db = new DataBase();
+	public abstract boolean isValidData(instaPayAccount acc);
+
+	public instaPayAccount register(instaPayAccount acc) {
+		if(isValidData(acc)){
+			db.AddAccount(acc);
+			return acc;
+		}
+		return null;
+	}
+
+	public boolean checkUsername(String username){
+		return db.accounts.contains(username);
+	}
+
+	public boolean checkPassword (String password){
+		return password.length() >= 8;
+	}
 
 }

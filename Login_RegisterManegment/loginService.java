@@ -4,6 +4,7 @@ import User.*;
 
 public interface loginService {
 
+	DataBase db = new DataBase();
 	/**
 	 * 
 	 * @param Name
