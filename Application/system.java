@@ -337,9 +337,7 @@ public class system {
 
 	}
 
-
-	public static void main(String[] args) throws InterruptedException {
-
+	public static void RUN() throws InterruptedException {
 		// Test Data Saved in DATABASE
 		System.out.println("Welcome to InstPay OnlinePayment Platform");
 		instaPayAccount ac1 = new instaPayAccount("account1","123456789");
@@ -358,13 +356,13 @@ public class system {
 		// Ask User to Login or to Register
 
 		// login
-			 // TODO login with wrong data pass or username
-			 // TODO login with account1 and with registered one
+		// TODO login with wrong data pass or username
+		// TODO login with account1 and with registered one
 		//register
-			// TODO register with invalid user / pass
-			// TODO register with exist account user / pass
-		    // TODO 2with not exist bank or mobile
-			// TODO register with valid
+		// TODO register with invalid user / pass
+		// TODO register with exist account user / pass
+		// TODO 2with not exist bank or mobile
+		// TODO register with valid
 		// trnsfer
 
 
@@ -398,5 +396,68 @@ public class system {
 			while (!ServicesPage());
 
 		}
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+
+			RUN();
+//		// Test Data Saved in DATABASE
+//		System.out.println("Welcome to InstPay OnlinePayment Platform");
+//		instaPayAccount ac1 = new instaPayAccount("account1","123456789");
+//		ac1.Account = new walletAccount("300001",WalletType.VFCASH);
+//		instaPayAccount ac2 = new instaPayAccount("account2","123456789");
+//		ac2.Account = new walletAccount("300004",WalletType.VFCASH);
+//		instaPayAccount ac3 = new instaPayAccount("account3","123456789");
+//		ac3.Account = new bankAccount("200001","100000000");
+//		instaPayAccount ac4 = new instaPayAccount("account4","123456789");
+//		ac4.Account = new bankAccount("200002","100000001");
+//		DB.AddAccount(ac1);
+//		DB.AddAccount(ac2);
+//		DB.AddAccount(ac3);
+//		DB.AddAccount(ac4);
+//
+//		// Ask User to Login or to Register
+//
+//		// login
+//			 // TODO login with wrong data pass or username
+//			 // TODO login with account1 and with registered one
+//		//register
+//			// TODO register with invalid user / pass
+//			// TODO register with exist account user / pass
+//		    // TODO 2with not exist bank or mobile
+//			// TODO register with valid
+//		// trnsfer
+//
+//
+//		/*
+//
+//			with enetrened account and new
+//
+//					Wallet to wallet  or to insta
+//					bank to wallet or to insta
+//					wallet to bank or to insta
+//					bank to bank or to insta
+//
+//					exceed balance
+//
+//					same 4 but to myself
+//
+//					to non exist wallet or bank
+//
+//					bill with wallet
+//					bill with bank true o false
+//		*/
+//
+//
+//
+//
+//		while (true) {
+//			// want to login or Register
+//			while (!LoginRegisterPage());
+//
+//			// singed in and need to Transfer
+//			while (!ServicesPage());
+//
+//		}
 	}
 }
