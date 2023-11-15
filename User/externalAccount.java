@@ -18,6 +18,5 @@ public abstract class externalAccount {
 	}
 
 	public abstract void displayMenu();
-	public abstract String getData();
 
 }

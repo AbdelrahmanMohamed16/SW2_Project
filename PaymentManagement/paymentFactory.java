@@ -1,10 +1,10 @@
 package PaymentManagement;
 
-public class paymentFactory {
+import User.WalletType;
 
-	public paymentAPI createTransformAPI() {
-		// TODO - implement paymentFactory.createTransformAPI
-		throw new UnsupportedOperationException();
-	}
+public interface paymentFactory {
+	public static paymentFactory p = null;
+
+	public paymentAPI createTransformAPI();
 
 }

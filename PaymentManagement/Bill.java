@@ -8,5 +8,9 @@ public abstract class Bill {
 	{
 		return Amount;
 	}
+	Bill(String billNumber, double Amount){
+		this.billNumber = billNumber;
+		this.Amount = Amount;
+	}
 
 }

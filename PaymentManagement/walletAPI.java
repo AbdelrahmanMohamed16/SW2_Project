@@ -1,5 +1,6 @@
 package PaymentManagement;
 
+import User.WalletType;
 import User.bankAccount;
 import User.externalAccount;
 import User.walletAccount;
@@ -7,23 +8,25 @@ import User.walletAccount;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class walletAPI implements paymentAPI {
+public class walletAPI implements paymentAPI {
 	public static HashMap<externalAccount, Double> walletAccounts;
 	static {
 		walletAccounts = new HashMap<>() ;
-		walletAccounts.put(new walletAccount( "300001", "VFCash"),1000.0);
-		walletAccounts.put(new walletAccount( "300002", "CIB"),2000.0);
-		walletAccounts.put(new walletAccount( "300003", "Fawry"),3000.0);
-		walletAccounts.put(new walletAccount( "300004", "VFCash"),10000.0);
-		walletAccounts.put(new walletAccount("300005", "CIB"),20000.0);
-		walletAccounts.put(new walletAccount("300006", "Fawry"),500000.0);
-		walletAccounts.put(new walletAccount("300007", "VFCash"),1000000.0);
+		walletAccounts.put(new walletAccount( "300001", WalletType.VFCASH),1000.0);
+		walletAccounts.put(new walletAccount( "300002", WalletType.CIBWALLET),2000.0);
+		walletAccounts.put(new walletAccount( "300003", WalletType.FAWRY),3000.0);
+		walletAccounts.put(new walletAccount( "300004", WalletType.VFCASH),10000.0);
+		walletAccounts.put(new walletAccount("300005", WalletType.CIBWALLET),20000.0);
+		walletAccounts.put(new walletAccount("300006", WalletType.FAWRY),500000.0);
+		walletAccounts.put(new walletAccount("300007", WalletType.VFCASH),1000000.0);
 
 	}
 
 
 	static public externalAccount getAccount(externalAccount src){
 		for (externalAccount ac : walletAccounts.keySet()) {
+			System.out.println(ac.accountNumber);
+			System.out.println(src.accountNumber);
 			if(ac.compare(src)) return ac;
 		}
 		return null;
@@ -33,10 +36,11 @@ public abstract class walletAPI implements paymentAPI {
 	public void Transfer(externalAccount src , externalAccount dest , double Amount){
 		externalAccount srcObj =  getAccount(src);
 		externalAccount destObj = getAccount(dest);
+		System.out.println(srcObj);
+		System.out.println(destObj);
 
 
-		if( srcObj!=null&&destObj!=null && walletAccounts.get(srcObj)>=Amount)
-		{
+		if( srcObj!=null&&destObj!=null && walletAccounts.get(srcObj)>=Amount){
 			// get src account from hash
 			walletAccounts.put(srcObj,walletAccounts.get(srcObj)-Amount);
 			// get dest wallet from hash

@@ -4,7 +4,7 @@ import User.*;
 
 public interface loginService {
 
-	MemoryDB db = new MemoryDB();
+	DataBase db = MemoryDB.getInstance();
 	/**
 	 * 
 	 * @param Name

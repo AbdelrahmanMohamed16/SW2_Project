@@ -6,7 +6,7 @@ public class instaPayAccount {
 		this.userName = userName;
 		this.password = password;
 	}
-	private externalAccount Account;
+	public externalAccount Account;
 	private String userName;
 	private String password;
 

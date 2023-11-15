@@ -1,25 +1,28 @@
 package User;
 
+import java.util.Objects;
+
 public class walletAccount extends externalAccount {
 
-	public String walletType;
-	public walletAccount(String accountNumber , String walletType){
+	public WalletType walletType;
+	public walletAccount(String accountNumber , WalletType walletType){
 			this.accountNumber = accountNumber;
 			this.walletType = walletType;
 	}
 	public Boolean compare(externalAccount ex){
 
-		if(ex.accountNumber == this.accountNumber){
-			return true ;
-		}
-		return false;
+		return Objects.equals(ex.accountNumber, this.accountNumber);
 	}
 
 	@Override
 	public void displayMenu() {
-
+		System.out.println("Transfer Menu:\n" +
+				"1- Transfer to InstaPay Account\n" +
+				"2- Pay Bill\n" +
+				"3- Transfer to Wallet\n" +
+				"4- Get Balance\n");
 	}
-	public  String getData(){
+	public  WalletType getData(){
 		return this.walletType;
 	}
 

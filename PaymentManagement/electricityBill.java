@@ -4,6 +4,10 @@ public class electricityBill extends Bill {
 
 	private String electricityCompany;
 	private String electricityConsumed;
-	private String Amount;
 
+	electricityBill(String billNumber, double Amount, String electricityCompany, String electricityConsumed) {
+		super(billNumber, Amount);
+		this.electricityCompany = electricityCompany;
+		this.electricityConsumed = electricityConsumed;
+	}
 }
