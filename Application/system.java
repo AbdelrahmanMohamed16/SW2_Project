@@ -7,6 +7,8 @@ import User.*;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static com.sun.deploy.resources.ResourceManager.formatDouble;
+
 
 public class system {
 
@@ -239,7 +241,33 @@ public class system {
 				}
 
 				if (Choice.equals("2")) {
-					break;
+					System.out.println("Enter billType (Gas/Electricity/Water)");
+					String billType = scanner.nextLine();
+					if(!billType.equalsIgnoreCase("Gas") && !billType.equalsIgnoreCase("Electricity") && !billType.equalsIgnoreCase( "Water"))
+					{
+						System.out.println("Sorry cannot pay this type of bill");
+						continue;
+					}
+					System.out.println("Enter billNumber");
+					String billNumber = scanner.nextLine();
+					int consume = (int) (Math.random() * 1000) + 1;
+					String consumed = Integer.toString(consume);
+					double amount = Double.parseDouble(formatDouble((double)(Math.random() * 200 + 1),2));
+					System.out.println("bill amount is " + amount);
+					Bill bill = null;
+					if(billType.equalsIgnoreCase("Electricity"))
+					{
+						 bill = new electricityBill(billNumber,amount,billType,consumed);
+					}
+					else if(billType.equalsIgnoreCase("Water"))
+					{
+						bill = new waterBill(billNumber,amount,billType,consumed);
+					}
+					else if(billType.equalsIgnoreCase("Gas"))
+					{
+						bill = new gasBill(billNumber,amount,billType,consumed);
+					}
+					API.payBill(currentUser.Account,bill);
 				} else if (Choice.equals("3")) {
 					System.out.println("Enter MobileNumber of Transfer Account: ");
 					String mobNum = scanner.nextLine();
