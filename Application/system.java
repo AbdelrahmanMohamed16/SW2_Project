@@ -4,6 +4,7 @@ import Login_RegisterManegment.*;
 import PaymentManagement.*;
 import User.*;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -179,14 +180,16 @@ public class system {
 		instaPayAccount ac2 = new instaPayAccount("abedo2","0123456789");
 		ac2.Account = new walletAccount("300004",WalletType.VFCASH);
 		instaPayAccount ac3 = new instaPayAccount("abedo3","0123456789");
-		ac2.Account = new bankAccount("200001","100000000");
+		ac3.Account = new bankAccount("200001","100000000");
 		instaPayAccount ac4 = new instaPayAccount("abedo4","0123456789");
-		ac2.Account = new bankAccount("200002","100000001");
+		ac4.Account = new bankAccount("200002","100000001");
 		DB.AddAccount(ac1);
 		DB.AddAccount(ac2);
 		DB.AddAccount(ac3);
 		DB.AddAccount(ac4);
+
 		// Ask User to Login or to Register
+
 
 		while (true) {
 			// if Login
@@ -199,6 +202,72 @@ public class system {
 				} else if (opStart.matches("(?i)(Register|2)")) {
 					if (preRegister()) break;
 					else continue;
+
+				}
+				System.out.println("InValid Input");
+
+			} while (true);
+			do {
+				currentUser.Account.displayMenu();
+				String Choice = scanner.nextLine();
+				// wallet to wallet DONE
+				// BANK to Wallet DONE
+				// TODO BANK To BANK
+				if (Choice.equals("1") ) {
+					System.out.println("Enter UserName of InstaPay Account: ");
+					String transferUserName = scanner.nextLine();
+					externalAccount t = DB.getUserExtrnalAccount(transferUserName);
+					if(Objects.equals(accountType, "Wallet") && t instanceof bankAccount){
+						System.out.println("Wallet account cannot transfer to Bank");
+						continue;
+					}
+
+					if (t == null || (!accountType.equalsIgnoreCase("bank")  && currentUser.Account.compare(t)) ) {
+						System.out.println("Target Account Not Found Or you Choose to Transfer to your self");
+						continue;
+					}
+					if(currentUser.getAccount() instanceof bankAccount && t instanceof bankAccount ){
+						System.out.println(">> BANK TO BANK");
+						Choice = "5";
+					}
+					else{
+						System.out.println("Enter Amount: ");
+						double Amount = scanner.nextDouble();
+						API.Transfer(currentUser.Account, t, Amount);
+					}
+
+				}
+
+				if (Choice.equals("2")) {
+					break;
+				} else if (Choice.equals("3")) {
+					System.out.println("Enter MobileNumber of Transfer Account: ");
+					String mobNum = scanner.nextLine();
+					//externalAccount t = DB.getUserExtrnalAccount(mobNum);
+					externalAccount t = new walletAccount(mobNum,null);
+					if ( !accountType.equalsIgnoreCase("bank")  && currentUser.Account.compare(t) ) {
+						System.out.println("Target Account Not Found Or you Choose to Transfer to your self");
+						continue;
+					}
+					else{
+						System.out.println("Enter Amount: ");
+						double Amount = scanner.nextDouble();
+						API.Transfer(currentUser.Account, t, Amount);
+					}
+
+				} else if (Choice.equals("4")) {
+					System.out.println("Your Balance IS: " + API.getBalance(currentUser.Account));
+				} else if (Choice.equals("5") && accountType == "Bank") {
+
+				}
+
+				// Open to transfer or to LogOut
+			} while (true);
+		}
+	}
+}
+
+
 //				// take username / password
 //
 //				System.out.println("Enter UserName: ");
@@ -262,44 +331,9 @@ public class system {
 //				}
 
 
-					// if BAnk take Mobile number / Bank Account
-					// validate account / OTP Mobile
-					// if Wallet take Mobile
-					// validate mobile / OTP mobile
+// if BAnk take Mobile number / Bank Account
+// validate account / OTP Mobile
+// if Wallet take Mobile
+// validate mobile / OTP mobile
 
 //				break;
-				}
-				System.out.println("InValid Input");
-
-			} while (true);
-			do {
-				currentUser.Account.displayMenu();
-				String Choice = scanner.nextLine();
-				if (Choice.equals("1")) {
-					System.out.println("Enter UserName of Transfer Account: ");
-					String transferUserName = scanner.nextLine();
-					externalAccount t = DB.getUserExtrnalAccount(transferUserName);
-					if (t == null || currentUser.Account.compare(t)) {
-						System.out.println("Target Account Not Found Or you Choose to Transfer to your self");
-						continue;
-					}
-					System.out.println("Enter Amount: ");
-					double Amount = scanner.nextDouble();
-					API.Transfer(currentUser.Account, t, Amount);
-
-				} else if (Choice.equals("2")) {
-					break;
-				} else if (Choice.equals("3")) {
-
-				} else if (Choice.equals("4")) {
-					System.out.println("Your Balance IS: " + API.getBalance(currentUser.Account));
-
-				} else if (Choice.equals("5") && accountType == "Bank") {
-
-				}
-
-				// Open to transfer or to LogOut
-			} while (true);
-		}
-	}
-}

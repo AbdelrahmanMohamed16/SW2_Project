@@ -32,10 +32,19 @@ public class MemoryDB implements DataBase{
         return null;
     }
     // for transfer
+    @Override
+    public externalAccount getUserExtrnalAccount (externalAccount acc) {
+        for (instaPayAccount account : accounts) {
+            if ( account.getAccount().getClass().equals(acc.getClass()) &&  account.Account.compare(acc) ) {
+                return account.getAccount();
+            }
+        }
+        return null;
+    }
     public externalAccount getUserExtrnalAccount (String username) {
         for (instaPayAccount account : accounts) {
             if (account.getUserName().equals(username)) {
-                return account.Account;
+                return account.getAccount();
             }
         }
         return null;

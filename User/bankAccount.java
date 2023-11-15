@@ -1,5 +1,7 @@
 package User;
 
+import java.util.Objects;
+
 public class bankAccount extends externalAccount {
 	public String bankNumber;
 
@@ -10,10 +12,7 @@ public class bankAccount extends externalAccount {
 
 	public Boolean compare(externalAccount ex){
 
-		if(((bankAccount)ex).getData() == this.bankNumber){
-			return true ;
-		}
-		return false;
+		return Objects.equals(((bankAccount)ex).getData(), this.bankNumber);
 	}
 
 	@Override
