@@ -6,12 +6,11 @@ public class bankAccount extends externalAccount {
 	public String bankNumber;
 
 	public bankAccount(String accountNumber , String bankNumber ){
-		this.accountNumber = accountNumber;
+		this.mobileNumber = accountNumber;
 		this.bankNumber = bankNumber ;
 	}
 
 	public Boolean compare(externalAccount ex){
-
 		return Objects.equals(((bankAccount)ex).getData(), this.bankNumber);
 	}
 
@@ -22,9 +21,10 @@ public class bankAccount extends externalAccount {
 				"2- Pay Bill\n" +
 				"3- Transfer to Wallet\n" +
 				"4- Get Balance\n" +
-				"5- Transfer to Bank Account\n");
+				"5- Transfer to Bank Account\n" +
+				" press any button else to SignOut");
 	}
 	public  String getData(){
-		return this.bankNumber;
+		return bankNumber;
 	}
 }

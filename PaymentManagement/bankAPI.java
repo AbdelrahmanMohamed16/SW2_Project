@@ -46,7 +46,7 @@ public class bankAPI implements paymentAPI,TransferToBank {
 		return -1;
 	}
 
-	private externalAccount getAccount(externalAccount src){
+	public externalAccount getAccount(externalAccount src){
 		for (externalAccount ac : bankAccounts.keySet()) {
 			if(ac.compare(src)) return ac;
 		}
@@ -76,7 +76,7 @@ public class bankAPI implements paymentAPI,TransferToBank {
 		externalAccount destObj = this.getAccount(dest);
 
 
-		if( srcObj!=null&&destObj!=null  && bankAccounts.get(srcObj)>=Amount)
+		if( srcObj!=null && destObj!=null  && bankAccounts.get(srcObj)>=Amount)
 		{
 			// get src account from hash
 			bankAccounts.put(srcObj,bankAccounts.get(srcObj)-Amount);

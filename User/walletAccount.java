@@ -6,12 +6,12 @@ public class walletAccount extends externalAccount {
 
 	public WalletType walletType;
 	public walletAccount(String accountNumber , WalletType walletType){
-			this.accountNumber = accountNumber;
+			this.mobileNumber = accountNumber;
 			this.walletType = walletType;
 	}
 	public Boolean compare(externalAccount ex){
 
-		return Objects.equals(ex.accountNumber, this.accountNumber);
+		return Objects.equals(ex.mobileNumber, this.mobileNumber);
 	}
 
 	@Override
@@ -20,7 +20,8 @@ public class walletAccount extends externalAccount {
 				"1- Transfer to InstaPay Account\n" +
 				"2- Pay Bill\n" +
 				"3- Transfer to Wallet\n" +
-				"4- Get Balance\n");
+				"4- Get Balance\n" +
+				" press any button else to SignOut");
 	}
 	public  WalletType getData(){
 		return this.walletType;

@@ -25,8 +25,6 @@ public class walletAPI implements paymentAPI {
 
 	static public externalAccount getAccount(externalAccount src){
 		for (externalAccount ac : walletAccounts.keySet()) {
-			System.out.println(ac.accountNumber);
-			System.out.println(src.accountNumber);
 			if(ac.compare(src)) return ac;
 		}
 		return null;

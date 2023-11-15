@@ -4,7 +4,7 @@ import PaymentManagement.paymentAPI;
 
 public abstract class externalAccount {
 
-	public String accountNumber;
+	public String mobileNumber;
 	public paymentAPI transferAPI;
 
 	public double getBalance() {
@@ -13,8 +13,8 @@ public abstract class externalAccount {
 	}
 
 	public abstract Boolean compare(externalAccount ex);
-	public String getAccountNumber() {
-		return accountNumber;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
 	public abstract void displayMenu();
